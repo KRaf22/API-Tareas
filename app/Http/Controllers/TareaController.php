@@ -59,4 +59,14 @@ class TareaController extends Controller
         return $tarea;
 
     }
+
+    public function EliminarTarea(Request $request, $idTarea){
+        $tarea=Tarea::findOrFail($idTarea);
+
+        $tarea -> delete();
+
+        return [
+            "mensaje" => "La tarea con id $idTarea ha sido eliminada correctamente"
+        ];
+    }
 }
