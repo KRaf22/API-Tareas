@@ -35,4 +35,7 @@ class TareaController extends Controller
         return Tarea::all();
     }
 
+    public function ListarUnaTarea(Request $request, $idTarea){
+        return Tarea::findOrFail($idTarea);
+    }
 }
