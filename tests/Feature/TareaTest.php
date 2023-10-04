@@ -99,4 +99,46 @@ class TareaTest extends TestCase
 
     }
 
+    public function test_ModificarTareaExistente()
+    {
+        $estructura = [
+            'id',
+            'titulo',
+            'contenido',
+            'estado',
+            'autor',
+            'created_at',
+            'updated_at',
+            'deleted_at'
+        ];
+
+        $response = $this -> put('/api/tareas/1',[
+            "titulo" => "Testing",
+            "contenido" => "Test de God of War 3",
+            "estado" => "Pendiente",
+            "autor" => "Gonzalo Ramirez",
+        ]);
+
+        $response->assertStatus(200);
+
+        $response->assertJsonStructure($estructura);
+
+        $response->assertJsonFragment([
+            "titulo" => "Testing",
+            "contenido" => "Test de God of War 3",
+            "estado" => "Pendiente",
+            "autor" => "Gonzalo Ramirez",
+        ]);
+    }
+
+    public function test_ModificarTareaInexistente()
+    {
+        $response = $this -> put('/api/productos/231331',[
+        
+        ]);
+
+        $response->assertStatus(404);
+
+    }
+
 }

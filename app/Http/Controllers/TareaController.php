@@ -38,4 +38,25 @@ class TareaController extends Controller
     public function ListarUnaTarea(Request $request, $idTarea){
         return Tarea::findOrFail($idTarea);
     }
+
+    public function ModificarTarea(Request $request, $idTarea){
+        $tarea=Tarea::findOrFail($idTarea);
+
+        $validation = Validator::make($request->all(), [
+            'titulo' => 'required|string|max:255',
+            'contenido' => 'required|string|max:255',
+            'estado' => 'required|string|max:25',
+            'autor' => 'required|string|min:3|max:255',
+        ]);
+
+        if($validation->fails())
+            return response($validation->errors(),403);
+
+        $tarea -> update($request->all());
+
+        $tarea -> save();
+
+        return $tarea;
+
+    }
 }
