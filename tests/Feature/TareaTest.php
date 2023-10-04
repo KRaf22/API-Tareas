@@ -133,7 +133,7 @@ class TareaTest extends TestCase
 
     public function test_ModificarTareaInexistente()
     {
-        $response = $this -> put('/api/productos/231331',[
+        $response = $this -> put('/api/tareas/231331',[
         
         ]);
 
@@ -148,7 +148,7 @@ class TareaTest extends TestCase
         $response->assertStatus(200);
 
         $response->assertJsonFragment([
-            "mensaje" => "La tarea con id 1 ha sido eliminada correctamente"
+            "mensaje" => "La tarea con ID 1 ha sido eliminada correctamente"
         ]);
 
        $this->assertDatabaseMissing('tareas', [
