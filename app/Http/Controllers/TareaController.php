@@ -30,4 +30,9 @@ class TareaController extends Controller
 
         return $tarea;
     }
+
+    public function ListarTareas(Request $request){
+        return Tarea::all();
+    }
+
 }

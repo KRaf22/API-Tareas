@@ -47,4 +47,26 @@ class TareaTest extends TestCase
         $response->assertStatus(403);
 
     }
+
+    public function test_ListarTareas()
+    {
+        $response = $this->get('/api/tareas');
+
+        $response->assertStatus(200);
+
+        $response->assertJsonStructure([
+                 [
+                    'id',
+                    'titulo',
+                    'contenido',
+                    'estado',
+                    'autor',
+                    'created_at',
+                    'updated_at',
+                    'deleted_at'
+                ]
+        ]);
+        
+    }
+
 }
