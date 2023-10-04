@@ -69,4 +69,15 @@ class TareaController extends Controller
             "mensaje" => "La tarea con id $idTarea ha sido eliminada correctamente"
         ];
     }
+
+    public function BuscarPorTitulo(Request $request, $titulo)
+    {
+        $tareas = Tarea::where('titulo', $titulo)->get();
+
+        if ($tareas->isEmpty()) {
+            return response(['message' => 'No hay tareas con ese título'], 404);
+        }
+    
+        return $tareas;
+    }
 }
